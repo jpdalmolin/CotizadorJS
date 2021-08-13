@@ -10,14 +10,14 @@ const miFormulario = document.getElementById("registroPlan");
         e.preventDefault();
         let inputs = e.target.children;
     
-
+    
 
    // alert("La cotizacion total de su auto es de " +modeloIng+kmsIng)
             console.log(inputs[0].value);
             console.log(inputs[1].value);
             console.log(inputs[2].value);
 
-
+console.dir($);
     const nuevo = new Auto(inputs[0].value,inputs[1].value,inputs[2].value,inputs[3].value)
 
     productosRegistrados.push(nuevo);
@@ -31,18 +31,27 @@ const miFormulario = document.getElementById("registroPlan");
          console.log(guardados)  
             for(const auto of guardados){
        
-             let divAuto= document.createElement("div");
-             divAuto.innerHTML+=`<h2>El auto ${auto.id} (ingresado por Formulario)
+             $('#submits').append(`<h2>El auto ${auto.id} (ingresado por Formulario)
              el modelo es ${auto.modelo}
               su marca es ${auto.marca} 
                y sus km son ${auto.km}
-              <button id="${auto.id}" class="btnCompra">Quiero este plan</button></h2>`;
-             document.body.appendChild(divAuto);
-             const botones= document.getElementsByClassName("btnCompra");
+              <button id="${auto.id}" class="btn${auto.id}">Quiero este plan</button>
+              <button id="${auto.id}" class="btn btn-danger btn-delete">x</button>              
+              
+              </h2>`);
+                
+              botones= $(`.btn${auto.id}`);
+
+              $('.btn-delete').on('click',eliminarAuto);
+             
+              
+
+             
+             
  
  
              for (const boton of botones){
-                 boton.addEventListener('click',comprarManejador)
+                 boton.onclick=comprarManejador;
              }
              function comprarManejador(){
                  
@@ -85,13 +94,13 @@ const miFormulario = document.getElementById("registroPlan");
             calcMarca();
             calcKm();
             auto.cotizFinal=auto.modelo+auto.marca+auto.km
-            let divCot= document.createElement("div")
-                 divCot.innerHTML=`<h2>Usted acepto su plan de Auto ${auto.id}
-                 el total a abonar será ${auto.cotizFinal}</h2>`;
-                 document.body.appendChild(divCot);
+            $('body').append(`<h2>Usted acepto su plan de Auto ${auto.id}
+                 el total a abonar será ${auto.cotizFinal}</h2>`);
+                 
                
          }
             
+         
       
 
      }}}
