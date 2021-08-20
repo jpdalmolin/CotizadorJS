@@ -1,8 +1,24 @@
-let titulo1=document.getElementById("titulo1");
-titulo1.innerHTML="COTIZACION DEL SEGURO DE SU AUTO AL INSTANTE! ";
+$("#titulo1").empty();
+
+
+$("#titulo1").animate({ left:'250px',
+                        opacity:'0,5',
+                        height:'350px',
+                        
+
+
+
+
+
+}).slideUp(2000).slideDown(3000).animate({left:'100px',
+opacity:'1',
+height:'40px'
+});
+
+$("#titulo1").append("COTIZACION DEL SEGURO DE SU AUTO AL INSTANTE! ").fadeOut(2000)
 
 const productosRegistrados=[];
-
+const autos=[]
 const miFormulario = document.getElementById("registroPlan");
     miFormulario.onsubmit=(e)=>{
             console.log(e.target)
@@ -10,7 +26,8 @@ const miFormulario = document.getElementById("registroPlan");
         e.preventDefault();
         let inputs = e.target.children;
     
-    
+  
+
 
    // alert("La cotizacion total de su auto es de " +modeloIng+kmsIng)
             console.log(inputs[0].value);
@@ -39,7 +56,12 @@ console.dir($);
               <button id="${auto.id}" class="btn btn-danger btn-delete">x</button>              
               
               </h2>`);
-                
+                $("h2").fadeIn();
+                $('#submits').fadeOut("slow",()=>{
+                    $('#submits').fadeIn();
+                });
+                $('#submits').css("background-color","yellow")
+          
               botones= $(`.btn${auto.id}`);
 
               $('.btn-delete').on('click',eliminarAuto);
@@ -54,11 +76,19 @@ console.dir($);
                  boton.onclick=comprarManejador;
              }
              function comprarManejador(){
-                 
+                 confirmarCompra();
               
                 cotizFinal();
              }
-
+             function confirmarCompra(){
+                $(`.btn${auto.id}`).hide();
+                const URL= "https://jsonplaceholder.typicode.com/posts";
+                $.post(URL,JSON.stringify(productosRegistrados), function(datos,estado){
+                    console.log(datos)
+                    console.log(estado)
+                    $('#notificacion').html(`CONFIRMADO ${datos.id}`)
+             })
+            }
 
          function calcModelo() {
             auto.modeloReal=auto.modelo;
@@ -94,9 +124,9 @@ console.dir($);
             calcMarca();
             calcKm();
             auto.cotizFinal=auto.modelo+auto.marca+auto.km
-            $('body').append(`<h2>Usted acepto su plan de Auto ${auto.id}
-                 el total a abonar será ${auto.cotizFinal}</h2>`);
-                 
+            $('body').append(`<h3>Usted acepto su plan de Auto ${auto.id}
+                 el total a abonar será ${auto.cotizFinal}</h3>`);
+                 $('h3').css("background-color","grey")
                
          }
             
@@ -104,3 +134,17 @@ console.dir($);
       
 
      }}}
+
+/*
+     const URLGET ="data/autos.json"
+     $.get(URLGET,function(datos,estado){
+         if(estado=="success"){
+             for(const literal of datos){
+                 autos.push(new Auto(literal.id,literal.modelo,literal.marca,literal.kilometros))
+ 
+             }
+         }
+         console.log(autos)
+         autosUI(autos,'#productosContenedor')
+     })
+*/
