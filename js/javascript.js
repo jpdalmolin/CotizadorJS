@@ -66,20 +66,19 @@ console.dir($);
 
               $('.btn-delete').on('click',eliminarAuto);
              
-              
-
-             
-             
- 
- 
              for (const boton of botones){
                  boton.onclick=comprarManejador;
              }
              function comprarManejador(){
+                 e.preventDefault();
+                 const idAuto=e.target.id;
+                console.log(idAuto)
                  confirmarCompra();
               
                 cotizFinal();
              }
+
+             //confirma la compra por POST
              function confirmarCompra(){
                 $(`.btn${auto.id}`).hide();
                 const URL= "https://jsonplaceholder.typicode.com/posts";
@@ -124,14 +123,35 @@ console.dir($);
             calcMarca();
             calcKm();
             auto.cotizFinal=auto.modelo+auto.marca+auto.km
-            $('body').append(`<h3>Usted acepto su plan de Auto ${auto.id}
+            $('#plan').append(`<h3>Usted acepto su plan de Auto ${auto.id}
                  el total a abonar será ${auto.cotizFinal}</h3>`);
                  $('h3').css("background-color","grey")
                
          }
-            
-         
-      
+            //me pone todos los inputs en empty
+         function submitForm() {
+               
+            $('#registroPlan')[0].reset(); // Reset all form data
+               return false; // Prevent page refresh
+             }
+             $(`#Bcotizar`).on('click',eliminarCotizar());
+               function eliminarCotizar(){
+                  $(`#Bcotizar`).hide();
+               
+                  submitForm()
+  
+  
+               }
+               function eliminarAuto(e){
+                   
+                let posicion=productosRegistrados.findIndex(auto=>auto.id = e.target.id)
+               
+             $('#submits').empty();
+              $('#plan').empty();
+              
+                productosRegistrados.splice(posicion,1)
+                localStorage.setItem("productosRegistrados", JSON.stringify(productosRegistrados))
+            }
 
      }}}
 

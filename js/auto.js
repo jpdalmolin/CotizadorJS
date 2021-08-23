@@ -1,5 +1,5 @@
 class Auto{
-    constructor(id,modelo,marca,km,marcaReal,modeloReal,kmReal,cotizFinal){
+    constructor(id,modelo,marca,km,marcaReal,modeloReal,kmReal,cotizFinal,cantidad){
     this.id=parseInt(id);
     this.modelo=modelo; 
     this.marca=marca;
@@ -8,8 +8,11 @@ class Auto{
     this.modeloReal=modeloReal
     this.kmReal=kmReal
     this.cotizFinal=cotizFinal
+    this.cantidad=cantidad;
 
     }
+  
+    /*
     cotizarMod(){
         
         this.modelo=parseInt(prompt("ingrese modelo " ))
@@ -61,5 +64,5 @@ class Auto{
          //Metodo,cotiza el auto sumando todo lo ingresado.
            
     }
-
+*/
 }
