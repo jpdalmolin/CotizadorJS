@@ -69,12 +69,14 @@ console.dir($);
              for (const boton of botones){
                  boton.onclick=comprarManejador;
              }
-             function comprarManejador(){
+             function comprarManejador(e){
                  e.preventDefault();
                  const idAuto=e.target.id;
+                 const seleccionado = productosRegistrados.find(p => p.id == idAuto);
                 console.log(idAuto)
+               
                  confirmarCompra();
-              
+                 document.getElementById('reload').style.display = '';
                 cotizFinal();
              }
 
@@ -134,6 +136,8 @@ console.dir($);
             $('#registroPlan')[0].reset(); // Reset all form data
                return false; // Prevent page refresh
              }
+
+
              $(`#Bcotizar`).on('click',eliminarCotizar());
                function eliminarCotizar(){
                   $(`#Bcotizar`).hide();
@@ -143,12 +147,12 @@ console.dir($);
   
                }
                function eliminarAuto(e){
-                   
+                console.log(e.target.id);
                 let posicion=productosRegistrados.findIndex(auto=>auto.id = e.target.id)
                
-             $('#submits').empty();
+             $('h2').empty();
               $('#plan').empty();
-              
+              document.getElementById('reload').style.display = '';
                 productosRegistrados.splice(posicion,1)
                 localStorage.setItem("productosRegistrados", JSON.stringify(productosRegistrados))
             }
