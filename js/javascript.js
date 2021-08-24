@@ -76,7 +76,7 @@ console.dir($);
                 console.log(idAuto)
                
                  confirmarCompra();
-                 document.getElementById('reload').style.display = '';
+                // document.getElementById('reload').style.display = '';
                 cotizFinal();
              }
 
@@ -128,6 +128,8 @@ console.dir($);
             $('#plan').append(`<h3>Usted acepto su plan de Auto ${auto.id}
                  el total a abonar será ${auto.cotizFinal}</h3>`);
                  $('h3').css("background-color","grey")
+
+              
                
          }
             //me pone todos los inputs en empty
@@ -141,7 +143,7 @@ console.dir($);
              $(`#Bcotizar`).on('click',eliminarCotizar());
                function eliminarCotizar(){
                   $(`#Bcotizar`).hide();
-               
+                  $('#whenCotiz').append(`<h2>Termino su cotizacion, cuando elimine su plan podra realizar otra</h2>`);
                   submitForm()
   
   
@@ -149,12 +151,16 @@ console.dir($);
                function eliminarAuto(e){
                 console.log(e.target.id);
                 let posicion=productosRegistrados.findIndex(auto=>auto.id = e.target.id)
-               
+                $(`#Bcotizar`).show();
+                
+                $('#notificacion').empty();
              $('h2').empty();
               $('#plan').empty();
-              document.getElementById('reload').style.display = '';
+             // document.getElementById('reload').style.display = '';
                 productosRegistrados.splice(posicion,1)
-                localStorage.setItem("productosRegistrados", JSON.stringify(productosRegistrados))
+           //     localStorage.setItem("productosRegistrados", JSON.stringify(productosRegistrados))
+
+
             }
 
      }}}
