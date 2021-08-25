@@ -1,0 +1,2 @@
+const productosRegistrados=[];
+const autos=[]
