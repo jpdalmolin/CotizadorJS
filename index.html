@@ -56,11 +56,20 @@
 
 
       <form id="registroPlan">
-        <input id="inputUno" type="number" placeholder="id" required>
-        <input id="inputUno"  type="number" placeholder="modelo" required>
-        <input id="inputUno"  type="text" class="uppercase" placeholder="marca" required>
-        <input id="inputUno"  type="number" placeholder="kilometros" required>
-        <input  id="Bcotizar" class="btn btn-primary" type="submit" value="COTIZAR" onlick="submitForm()">
+        <input id="inputId" type="number" placeholder="id"  required>
+
+        <input id="model"  type="number" placeholder="modelo" min="1950" max="2022" required>
+        <select id="inputUno"  type="text" class="uppercase" placeholder="marca" required>
+          <option value="BMW">BMW</option>
+          <option value="AUDI">AUDI</option>
+          <option value="MERCEDES">MERCEDES</option>
+          <option value="FORD">FORD</option>
+          <option value="RENAULT">RENAULT</option>
+          <option value="CITROEN">CITROEN</option>
+          <option value="OTRO">OTRO</option>
+        </select>
+        <input id="inputUno"  type="number" placeholder="kilometros" min="0" max="500000" required>
+        <input  id="Bcotizar" class="btn btn-primary" type="submit" value="COTIZAR" >
         
       </form>
 
@@ -84,7 +93,7 @@
   <div id="notificacion"></div>
   <div id="plan"></div>
   <div ><p id="whenCotiz"></p></div>
-
+<div id="errorId"></div>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/>
   <!-- Footer -->
@@ -203,9 +212,10 @@
 <!--  <button id="reload" style="display:none">Click para hacer otra cotizacion</button> !-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
- 
-    <script src="js/auto.js"></script>
-    <script src="js/javascript.js"></script>
+    <script src="js/globales.js"></script>
+    <script src="js/animaciones.js"></script>
+    <script src="js/classAuto.js"></script>
+    <script src="js/funciones.js"></script>
     <script src="js/main.js"></script>  
 
 
