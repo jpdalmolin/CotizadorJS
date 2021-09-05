@@ -5,11 +5,6 @@ $("#titulo1").animate({ left:'250px',
                         opacity:'0,5',
                         height:'350px',
                         
-
-
-
-
-
 }).slideUp(2000).slideDown(3000).animate({left:'100px',
 opacity:'1',
 height:'40px'
