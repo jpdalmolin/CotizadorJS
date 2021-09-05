@@ -1,1 +1,15 @@
 input.uppercase { text-transform: uppercase; }
+
+
+#titulo1{
+    background-color:lightblue;
+}
+
+
+#imagen{ 
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  opacity: 0.8;
+    }
